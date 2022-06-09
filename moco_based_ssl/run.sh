@@ -1,0 +1,4 @@
+#from scratch
+python main_moco.py   --arch meta   --optimizer=adamw --lr=1.5e-4 --weight-decay=.1   --epochs=600 --warmup-epochs=40   --stop-grad-conv1 --moco-m-cos --moco-t=.2   --dist-url 'tcp://localhost:10001'     --world-size 1 --rank  0 /path/to/data/ --gpu 1 --multiprocessing-distributed
+#pretain public model
+python main_moco.py   -a vit_base   --optimizer=adamw --lr=1.5e-4 --weight-decay=.1   --epochs=600 --warmup-epochs=40   --stop-grad-conv1 --moco-m-cos --moco-t=.2   --dist-url 'tcp://localhost:10001'     --world-size 1 --rank 0 /path/to/data/   --gpu 1 --multiprocessing-distributed  --resume vit-b-300ep.pth.tar
